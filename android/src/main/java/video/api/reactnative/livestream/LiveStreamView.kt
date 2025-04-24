@@ -158,6 +158,7 @@ class LiveStreamView @JvmOverloads constructor(
   var isMuted: Boolean = false
     get() = liveStream.isMuted
     set(value) {
+      Log.v(TAG, "set isMuted: $value")
       liveStream.isMuted = value
       field = value
     }
