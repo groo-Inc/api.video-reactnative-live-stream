@@ -141,6 +141,8 @@ const ApiVideoLiveStreamView = forwardRef<
         }
       : undefined,
     onStartStreaming: (event: NativeSyntheticEvent<OnStartStreamingEvent>) => {
+      console.log('test: start streaming');
+
       const { requestId, result, error } = event.nativeEvent;
       const promise = _requestMap.current.get(requestId);
 
