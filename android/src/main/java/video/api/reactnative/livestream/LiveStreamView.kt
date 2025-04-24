@@ -148,16 +148,18 @@ class LiveStreamView @JvmOverloads constructor(
   val isStreaming: Boolean
     get() = liveStream.isStreaming
 
-  var camera: CameraFacingDirection
+  var camera: CameraFacingDirection = CameraFacingDirection.BACK
     get() = liveStream.cameraPosition
     set(value) {
       liveStream.cameraPosition = value
+      field = value
     }
 
-  var isMuted: Boolean
+  var isMuted: Boolean = false
     get() = liveStream.isMuted
     set(value) {
       liveStream.isMuted = value
+      field = value
     }
 
   var zoomRatio: Float
