@@ -106,7 +106,20 @@ if (codegenPath == null) {
   codegenPath = findNodeModulePath(projectDir, "react-native-codegen")
 }
 
+def rtmpdroid16KbMavenRepo = uri("$projectDir/maven")
+
+rootProject.allprojects {
+  repositories {
+    maven {
+      url rtmpdroid16KbMavenRepo
+    }
+  }
+}
+
 repositories {
+    maven {
+        url rtmpdroid16KbMavenRepo
+    }
     maven {
         url "${reactNativePath}/android"
     }
@@ -120,7 +133,8 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
 
-  implementation("video.api:rtmpdroid:1.2.1-packed")
+  // Use the fork-local AAR rebuilt with 16KB ELF LOAD segment alignment.
+  implementation("video.api:rtmpdroid:1.2.1-packed-16kb")
   implementation("video.api:android-live-stream:1.4.3") {
     exclude group: 'video.api', module: 'rtmpdroid'
     // exclude the transitive dependency to use packed version to avoid conflict with libssl.so and libcrypto.so
